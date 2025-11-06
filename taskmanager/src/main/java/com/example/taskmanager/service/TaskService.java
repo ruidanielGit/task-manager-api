@@ -14,14 +14,14 @@ import java.util.List;
 @Service
 public class TaskService {
 
-    private static final Task TASK_DTO_1 = new Task(1, "First task", "Gym", true);
-    private static final Task TASK_DTO_2 = new Task(2, "Second task", "Study Spring", false);
-    private static final Task TASK_DTO_3 = new Task(3, "Third task", "Work on website Agency", false);
+    private static final Task TASK_1 = new Task(1, "First task", "Gym", true);
+    private static final Task TASK_2 = new Task(2, "Second task", "Study Spring", false);
+    private static final Task TASK_3 = new Task(3, "Third task", "Work on website Agency", false);
     private static final String TASK_NOT_FOUND = "Task with id %d not found";
     private static final String TASK_ALREADY_EXISTS = "Task with id %d already exists";
 
     private final TaskMapper taskMapper;
-    List<Task> taskList = new ArrayList<>(List.of(TASK_DTO_1, TASK_DTO_2, TASK_DTO_3));
+    List<Task> taskList = new ArrayList<>(List.of(TASK_1, TASK_2, TASK_3));
 
     public TaskService(TaskMapper taskMapper) {
         this.taskMapper = taskMapper;
