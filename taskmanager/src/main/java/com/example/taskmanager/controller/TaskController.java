@@ -28,7 +28,7 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public TaskDTO getTask(@PathVariable @Min(1) int id) {
+    public TaskDTO getTask(@PathVariable @Min(1) Long id) {
         return this.taskService.findTaskById(id);
     }
 
@@ -40,14 +40,14 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public TaskDTO update(@PathVariable("id") @Min(1) int id, @Valid @RequestBody TaskDTO taskDto) {
+    public TaskDTO update(@PathVariable("id") @Min(1) Long id, @Valid @RequestBody TaskDTO taskDto) {
         log.info("Updating task with id {}: {}", id, taskDto.getTitle());
         return this.taskService.update(id, taskDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") @Min(1) int id) {
+    public void delete(@PathVariable("id") @Min(1) Long id) {
         log.info("Deleting task with id {}", id);
         this.taskService.delete(id);
     }
