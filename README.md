@@ -68,6 +68,11 @@ java -jar target\taskmanager-0.0.1-SNAPSHOT.jar --server.port=8081
 
 The main Spring Boot application class is `com.example.taskmanager.TaskmanagerApplication`.
 
+## Swagger UI
+
+Swagger UI is accessible in `http://localhost:8080/swagger-ui.html`.
+Can be used to visualize endpoints documentation, send requests for test and inspect models / responses.
+
 ## Troubleshooting
 
 - If you see Lombok-related compilation errors in your IDE, install the Lombok plugin and enable annotation processing.
