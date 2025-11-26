@@ -32,6 +32,11 @@ public class TaskController {
         return this.taskService.findTaskById(id);
     }
 
+    @GetMapping("/incomplete")
+    public List<TaskDTO> getIncompleteTasks() {
+        return this.taskService.getIncompleteTasks();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public TaskDTO create(@Valid @RequestBody TaskDTO taskDto) {

@@ -68,6 +68,13 @@ public class TaskService {
         this.taskRepository.deleteById(id);
     }
 
+    public List<TaskDTO> getIncompleteTasks() {
+        return this.taskRepository.findAllIncompleteTasks()
+                .stream()
+                .map(taskMapper::entityToTaskDto)
+                .toList();
+    }
+
     private Task validateAndRetrieveById(Long id) {
         return this.taskRepository.findById(id)
                 .orElseThrow(() -> {
