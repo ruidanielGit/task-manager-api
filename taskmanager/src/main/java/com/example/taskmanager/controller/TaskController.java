@@ -25,17 +25,17 @@ public class TaskController {
     }
 
     @GetMapping
-    public Page<TaskDTO> getTasks(Pageable pageable) {
+    public Page<TaskDTO> findAll(Pageable pageable) {
         return this.taskService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
-    public TaskDTO getTask(@PathVariable @Min(1) Long id) {
+    public TaskDTO findById(@PathVariable @Min(1) Long id) {
         return this.taskService.findById(id);
     }
 
     @GetMapping("/incomplete")
-    public List<TaskDTO> getIncompleteTasks() {
+    public List<TaskDTO> findAllIncomplete() {
         return this.taskService.getIncomplete();
     }
 
