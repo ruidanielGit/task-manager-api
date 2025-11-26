@@ -6,6 +6,8 @@ import com.example.taskmanager.exception.custom.ResourceNotFoundException;
 import com.example.taskmanager.mappers.TaskMapper;
 import com.example.taskmanager.repository.TaskRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,15 +28,13 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public List<TaskDTO> getTasks() {
+    public Page<TaskDTO> findAll(Pageable pageable) {
         return this.taskRepository
-                .findAll()
-                .stream()
-                .map(taskMapper::entityToTaskDto)
-                .toList();
+                .findAll(pageable)
+                .map(taskMapper::entityToTaskDto);
     }
 
-    public TaskDTO findTaskById(Long id) {
+    public TaskDTO findById(Long id) {
         log.debug("Searching for task with id {}", id);
         return taskMapper.entityToTaskDto(validateAndRetrieveById(id));
     }
@@ -68,7 +68,7 @@ public class TaskService {
         this.taskRepository.deleteById(id);
     }
 
-    public List<TaskDTO> getIncompleteTasks() {
+    public List<TaskDTO> getIncomplete() {
         return this.taskRepository.findAllIncompleteTasks()
                 .stream()
                 .map(taskMapper::entityToTaskDto)

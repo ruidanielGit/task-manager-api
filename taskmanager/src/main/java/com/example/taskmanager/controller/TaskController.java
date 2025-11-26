@@ -5,6 +5,8 @@ import com.example.taskmanager.service.TaskService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,18 +25,18 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<TaskDTO> getTasks() {
-        return this.taskService.getTasks();
+    public Page<TaskDTO> getTasks(Pageable pageable) {
+        return this.taskService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
     public TaskDTO getTask(@PathVariable @Min(1) Long id) {
-        return this.taskService.findTaskById(id);
+        return this.taskService.findById(id);
     }
 
     @GetMapping("/incomplete")
     public List<TaskDTO> getIncompleteTasks() {
-        return this.taskService.getIncompleteTasks();
+        return this.taskService.getIncomplete();
     }
 
     @PostMapping
