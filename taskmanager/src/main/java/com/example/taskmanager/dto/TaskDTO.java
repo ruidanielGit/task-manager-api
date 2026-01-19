@@ -1,18 +1,6 @@
 package com.example.taskmanager.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class TaskDTO {
-
-    private Long id;
-    private String title;
-    private String description;
-    private boolean done;
+public record TaskDTO(Long id, @NotBlank String title, String description, boolean done) {
 }
